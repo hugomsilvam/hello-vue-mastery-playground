@@ -3,6 +3,14 @@
     <img alt="Vue logo" src="./assets/logo.png" />
     <h1>show me {{ product }} 🍌🍌🍌</h1>
     <a :href="link">macacos me mordam</a>
+    <br />
+    <span v-if="onSale"
+      >You can shop bananas right here, press the link 🆙</span
+    >
+    <h3>Banana qualities</h3>
+    <div v-for="quality in qualities" :key="quality.id">
+      <p>{{ quality.name }}</p>
+    </div>
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
   </div>
 </template>
@@ -22,7 +30,13 @@ export default class App extends Vue {
   data() {
     return {
       product: "bananas",
-      link: "http://www.staggeringbeauty.com/"
+      link: "http://www.staggeringbeauty.com/",
+      onSale: true,
+      qualities: [
+        { id: 1, name: "madeira" },
+        { id: 2, name: "porto santo" },
+        { id: 3, name: "continente" }
+      ]
     };
   }
 }
