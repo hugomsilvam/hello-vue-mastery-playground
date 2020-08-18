@@ -7,12 +7,17 @@
     <span v-if="onSale"
       >You can shop bananas right here, press the link 🆙</span
     >
+    <span v-else :class="{ 'out-of-stock': !onSale }"
+      >Out of stock of 🍌🍌🍌</span
+    >
     <h3>Banana qualities</h3>
     <div v-for="quality in qualities" :key="quality.id">
       <p>{{ quality.name }}</p>
     </div>
     <p>Bananas ({{ cart }})</p>
-    <button v-on:click="addToCart">Add bananas to cart</button>
+    <button v-on:click="addToCart" :disabled="!onSale">
+      Add bananas to cart
+    </button>
     <button v-if="cart > 0" v-on:click="removeFromCart">
       Remove bananas from cart
     </button>
@@ -64,5 +69,8 @@ export default class App extends Vue {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.out-of-stock {
+  text-decoration: line-through;
 }
 </style>
