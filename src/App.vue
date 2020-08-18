@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
+    <h1>show me {{ product }} 🍌🍌🍌</h1>
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
   </div>
 </template>
@@ -14,7 +15,15 @@ import HelloWorld from "./components/HelloWorld.vue";
     HelloWorld
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  // define a reactive property on a vue component
+  // https://michaelnthiessen.com/property-or-method-not-defined/
+  data() {
+    return {
+      product: "bananas"
+    };
+  }
+}
 </script>
 
 <style>
