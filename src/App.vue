@@ -2,6 +2,7 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <h1>show me {{ product }} 🍌🍌🍌</h1>
+    <a :href="link">macacos me mordam</a>
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
   </div>
 </template>
@@ -20,7 +21,8 @@ export default class App extends Vue {
   // https://michaelnthiessen.com/property-or-method-not-defined/
   data() {
     return {
-      product: "bananas"
+      product: "bananas",
+      link: "http://www.staggeringbeauty.com/"
     };
   }
 }
