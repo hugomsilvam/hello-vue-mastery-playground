@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <h1>show me {{ product }} 🍌🍌🍌</h1>
+    <h1>{{ title }}</h1>
     <a :href="link">macacos me mordam</a>
     <br />
     <span v-if="onSale"
@@ -11,7 +11,11 @@
       >Out of stock of 🍌🍌🍌</span
     >
     <h3>Banana qualities</h3>
-    <div v-for="quality in qualities" :key="quality.id">
+    <div
+      v-for="(quality, index) in qualities"
+      :key="quality.id"
+      @mouseover="updateProduct(index)"
+    >
       <p>{{ quality.name }}</p>
     </div>
     <p>Bananas ({{ cart }})</p>
@@ -40,12 +44,13 @@ export default class App extends Vue {
   data() {
     return {
       product: "bananas",
+      name: "joel",
       link: "http://www.staggeringbeauty.com/",
-      onSale: true,
+      selectedQuality: 0,
       qualities: [
-        { id: 1, name: "madeira" },
-        { id: 2, name: "porto santo" },
-        { id: 3, name: "continente" }
+        { id: 1, name: "madeira", quantity: 3 },
+        { id: 2, name: "porto santo", quantity: 4 },
+        { id: 3, name: "continente", quantity: 5 }
       ],
       cart: 0
     };
@@ -57,6 +62,18 @@ export default class App extends Vue {
 
   removeFromCart() {
     this.cart -= 1;
+  }
+
+  updateProduct(index) {
+    this.selectedQuality = index;
+  }
+
+  get title() {
+    return "praise for ♥️ " + this.name + " - " + this.product + " king 🍌🍌🍌";
+  }
+
+  get onSale() {
+    return this.qualities[this.selectedQuality].quantity > 0;
   }
 }
 </script>
