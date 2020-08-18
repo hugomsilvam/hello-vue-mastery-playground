@@ -11,6 +11,11 @@
     <div v-for="quality in qualities" :key="quality.id">
       <p>{{ quality.name }}</p>
     </div>
+    <p>Bananas ({{ cart }})</p>
+    <button v-on:click="addToCart">Add bananas to cart</button>
+    <button v-if="cart > 0" v-on:click="removeFromCart">
+      Remove bananas from cart
+    </button>
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
   </div>
 </template>
@@ -36,8 +41,17 @@ export default class App extends Vue {
         { id: 1, name: "madeira" },
         { id: 2, name: "porto santo" },
         { id: 3, name: "continente" }
-      ]
+      ],
+      cart: 0
     };
+  }
+
+  addToCart() {
+    this.cart += 1;
+  }
+
+  removeFromCart() {
+    this.cart -= 1;
   }
 }
 </script>
