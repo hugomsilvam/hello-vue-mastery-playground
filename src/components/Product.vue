@@ -10,13 +10,10 @@
       >Out of stock of 🍌🍌🍌</span
     >
     <ProductQualities :qualities="qualities" />
-    <p>Bananas ({{ cart }})</p>
     <button v-on:click="addToCart" :disabled="!onSale">
       Add bananas to cart
     </button>
-    <button v-if="cart > 0" v-on:click="removeFromCart">
-      Remove bananas from cart
-    </button>
+    <button v-on:click="removeFromCart">remove bananas from cart</button>
   </div>
 </template>
 
@@ -40,17 +37,16 @@ export default class Product extends Vue {
         { id: 1, name: "madeira", quantity: 3 },
         { id: 2, name: "porto santo", quantity: 4 },
         { id: 3, name: "continente", quantity: 5 }
-      ],
-      cart: 0
+      ]
     };
   }
 
   addToCart() {
-    this.cart += 1;
+    this.$emit("add-to-cart", this.qualities[this.selectedQuality].id);
   }
 
   removeFromCart() {
-    this.cart -= 1;
+    this.$emit("remove-from-cart", this.qualities[this.selectedQuality].id);
   }
 
   updateProduct(index) {

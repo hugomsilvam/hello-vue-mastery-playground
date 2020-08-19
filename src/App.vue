@@ -2,7 +2,8 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
-    <Product />
+    <Product @add-to-cart="addToCart" @remove-from-cart="removeFromCart" />
+    <p>Cart ({{ cart.length }})</p>
   </div>
 </template>
 
@@ -17,7 +18,25 @@ import Product from "./components/Product.vue";
     Product
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  data() {
+    return {
+      cart: []
+    };
+  }
+
+  addToCart(productID) {
+    this.cart.push(productID);
+  }
+
+  removeFromCart(productID) {
+    for (let i = 0; i < this.cart.length; i++) {
+      if (this.cart[i] === productID) {
+        this.cart.splice(i, 1);
+      }
+    }
+  }
+}
 </script>
 
 <style>
