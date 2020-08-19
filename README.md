@@ -1,4 +1,5 @@
-# hello-world
+# hello-vue-mastery-playground
+Playground project following vuemastery beginner lessons
 
 ## Project setup
 ```
